@@ -1,0 +1,138 @@
+[
+  {
+    "id": "js-101",
+    "title": "Suma de Array",
+    "description": "Crea una función que sume todos los números de un array",
+    "category": "Arrays",
+    "difficulty": "Fácil",
+    "usageOf": "reduce",
+    "constraints": ["No usar bucles for/while", "Una línea de código"],
+    "examples": [
+      { "input": "[1, 2, 3]", "output": "6" },
+      { "input": "[-1, 0, 1]", "output": "0" }
+    ],
+    "defaultCode": "function sumarArray(numeros) {\n  // Tu código aquí\n}",
+    "defaultTest": "console.log('Test 1: Suma de numero positivos.', sumarArray([1, 2, 3]) === 6 ? '✓' : '✗');\nconsole.log('Test 2:', sumarArray([-1, 0, 1]) === 0 ? '✓' : '✗');",
+    "solution": "function sumarArray(numeros) {\n  return numeros.reduce((acc, num) => acc + num, 0);\n}",
+    "createdAt": "2023-11-20T09:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-102",
+    "title": "Filtrar Números Pares",
+    "description": "Implementa una función que filtre y retorne solo los números pares de un array",
+    "category": "Arrays",
+    "difficulty": "Fácil",
+    "usageOf": "filter",
+    "constraints": ["No usar bucles for/while", "Máximo 3 líneas"],
+    "examples": [
+      { "input": "[1, 2, 3, 4]", "output": "[2, 4]" },
+      { "input": "[1, 3, 5]", "output": "[]" }
+    ],
+    "defaultCode": "function filtrarPares(numeros) {\n  // Tu código aquí\n}",
+    "defaultTest": "console.log('Test 1:', JSON.stringify(filtrarPares([1, 2, 3, 4])) === '[2,4]' ? '✓' : '✗');\nconsole.log('Test 2:', JSON.stringify(filtrarPares([1, 3, 5])) === '[]' ? '✓' : '✗');",
+    "solution": "function filtrarPares(numeros) {\n  return numeros.filter(num => num % 2 === 0);\n}",
+    "createdAt": "2023-11-20T10:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-103",
+    "title": "Fetch API con Manejo de Errores",
+    "description": "Haz fetch a 'https://api.example.com/data' y maneja posibles errores",
+    "category": "Async",
+    "difficulty": "Intermedio",
+    "usageOf": "fetch/async/await/try-catch",
+    "constraints": ["Usar async/await", "Manejar errores 404"],
+    "examples": [
+      { "input": "URL válida", "output": "Datos de la API" },
+      { "input": "URL inválida", "output": "Error: 404 Not Found" }
+    ],
+    "defaultCode": "async function fetchData(url) {\n  // Tu código aquí\n}",
+    "defaultTest": "(async () => {\n  try {\n    const data = await fetchData('https://jsonplaceholder.typicode.com/todos/1');\n    console.log('Test 1:', data && data.id === 1 ? '✓' : '✗');\n  } catch (error) {\n    console.log('Test 1: ✗', error);\n  }\n})();",
+    "solution": "async function fetchData(url) {\n  try {\n    const response = await fetch(url);\n    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);\n    return await response.json();\n  } catch (error) {\n    throw new Error(`Failed to fetch: ${error.message}`);\n  }\n}",
+    "createdAt": "2023-11-20T11:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-104",
+    "title": "Implementar Debounce",
+    "description": "Implementa una función debounce para controlar eventos frecuentes",
+    "category": "Funciones",
+    "difficulty": "Difícil",
+    "usageOf": "setTimeout/closures",
+    "constraints": ["No usar librerías externas", "Manejar this correctamente"],
+    "examples": [
+      {
+        "input": "Función que llama a API",
+        "output": "Llamada única tras 300ms sin eventos"
+      }
+    ],
+    "defaultCode": "function debounce(func, delay) {\n  // Tu código aquí\n}",
+    "defaultTest": "let counter = 0;\nconst increment = () => counter++;\nconst debouncedIncrement = debounce(increment, 100);\n\ndebouncedIncrement();\ndebouncedIncrement();\nsetTimeout(() => {\n  console.log('Test:', counter === 1 ? '✓' : '✗');\n}, 200);",
+    "solution": "function debounce(func, delay) {\n  let timeoutId;\n  return function(...args) {\n    clearTimeout(timeoutId);\n    timeoutId = setTimeout(() => {\n      func.apply(this, args);\n    }, delay);\n  };\n}",
+    "createdAt": "2023-11-20T12:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-105",
+    "title": "Deep Clone",
+    "description": "Implementa una función que clone profundamente un objeto",
+    "category": "Objetos",
+    "difficulty": "Intermedio",
+    "usageOf": "recursión/type checking",
+    "constraints": [
+      "Manejar arrays y objetos",
+      "No usar JSON.parse(JSON.stringify())"
+    ],
+    "examples": [
+      {
+        "input": "{a: 1, b: {c: 2}}",
+        "output": "Copia independiente del objeto"
+      }
+    ],
+    "defaultCode": "function deepClone(obj) {\n  // Tu código aquí\n}",
+    "defaultTest": "const obj = { a: 1, b: { c: 2 } };\nconst cloned = deepClone(obj);\nobj.b.c = 3;\nconsole.log('Test:', cloned.b.c === 2 ? '✓' : '✗');",
+    "solution": "function deepClone(obj) {\n  if (obj === null || typeof obj !== 'object') return obj;\n  const clone = Array.isArray(obj) ? [] : {};\n  for (const key in obj) {\n    if (obj.hasOwnProperty(key)) {\n      clone[key] = deepClone(obj[key]);\n    }\n  }\n  return clone;\n}",
+    "createdAt": "2023-11-20T13:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-106",
+    "title": "Currying Function",
+    "description": "Implementa una función de currying que transforme sum(a, b, c) en sum(a)(b)(c)",
+    "category": "Funciones",
+    "difficulty": "Difícil",
+    "usageOf": "closures",
+    "constraints": [
+      "Manejar n argumentos",
+      "Soporte para llamada final con ()"
+    ],
+    "examples": [
+      { "input": "sum(1)(2)(3)()", "output": "6" },
+      { "input": "sum(1,2)(3,4)()", "output": "10" }
+    ],
+    "defaultCode": "function curry(fn) {\n  // Tu código aquí\n}",
+    "defaultTest": "const sum = (...nums) => nums.reduce((a, b) => a + b, 0);\nconst curriedSum = curry(sum);\nconsole.log('Test 1:', curriedSum(1)(2)(3)() === 6 ? '✓' : '✗');\nconsole.log('Test 2:', curriedSum(1,2)(3,4)() === 10 ? '✓' : '✗');",
+    "solution": "function curry(fn) {\n  return function curried(...args) {\n    if (args.length >= fn.length) {\n      return fn.apply(this, args);\n    } else {\n      return function(...moreArgs) {\n        return curried.apply(this, args.concat(moreArgs));\n      };\n    }\n  };\n}",
+    "createdAt": "2023-11-20T14:00:00Z",
+    "createdBy": "admin"
+  },
+  {
+    "id": "js-107",
+    "title": "Manejador de Eventos",
+    "description": "Crea un sistema para añadir/remover múltiples eventos con delegación",
+    "category": "DOM",
+    "difficulty": "Intermedio",
+    "usageOf": "addEventListener/removeEventListener",
+    "constraints": [
+      "Usar delegación de eventos",
+      "Manejar memoria correctamente"
+    ],
+    "examples": [{ "input": "click en .btn", "output": "Manejador ejecutado" }],
+    "defaultCode": "class EventHandler {\n  constructor() {\n    this.handlers = {};\n  }\n\n  on(element, event, selector, handler) {\n    // Tu código aquí\n  }\n\n  off(element, event, selector) {\n    // Tu código aquí\n  }\n}",
+    "defaultTest": "const handler = new EventHandler();\nconst mockFn = jest.fn();\nhandler.on(document, 'click', '.btn', mockFn);\ndocument.querySelector('.btn').click();\nconsole.log('Test 1:', mockFn.mock.calls.length === 1 ? '✓' : '✗');\nhandler.off(document, 'click', '.btn');\ndocument.querySelector('.btn').click();\nconsole.log('Test 2:', mockFn.mock.calls.length === 1 ? '✓' : '✗');",
+    "solution": "class EventHandler {\n  constructor() {\n    this.handlers = {};\n  }\n\n  on(element, event, selector, handler) {\n    const key = `${event}-${selector}`;\n    const wrappedHandler = (e) => {\n      if (e.target.matches(selector)) {\n        handler(e);\n      }\n    };\n    this.handlers[key] = wrappedHandler;\n    element.addEventListener(event, wrappedHandler);\n  }\n\n  off(element, event, selector) {\n    const key = `${event}-${selector}`;\n    const handler = this.handlers[key];\n    if (handler) {\n      element.removeEventListener(event, handler);\n      delete this.handlers[key];\n    }\n  }\n}",
+    "createdAt": "2023-11-20T15:00:00Z",
+    "createdBy": "admin"
+  }
+]
