@@ -54,7 +54,7 @@ export default function EditorPanel({
           }}
         />
       </div>
-      <button onClick={handleRunTests} className="btn btn-success w-100">
+      <button onClick={handleRunTests} className="btn btn-warning w-100">
         <i className="bi bi-play-fill me-2"></i>Ejecutar Tests
       </button>
     </div>

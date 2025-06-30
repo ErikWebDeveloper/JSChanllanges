@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import challengesData from "../challanges.json";
+import NotFoundLayout from "../layouts/NotFoundLayout";
 import EditorPanel from "../components/EditorPanel";
 import ExcercicePanel from "../components/ExercicePanel";
 import WinModal from "../components/WinModal";
+import LoadSpinner from "../components/LoadSpinner";
 
 export default function ChallengePage() {
   const { challengeId } = useParams();
@@ -148,11 +150,15 @@ export default function ChallengePage() {
   };
 
   if (loading) {
-    return <div className="text-center my-5">Loading challenges...</div>;
+    return (
+      <main className="w-100 d-flex align-items-center justify-content-center flex-column">
+        <LoadSpinner />
+      </main>
+    );
   }
 
   if (!challenge) {
-    return <div className="alert alert-danger">No challenges available</div>;
+    return <NotFoundLayout />;
   }
 
   return (
