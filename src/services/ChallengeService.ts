@@ -26,6 +26,23 @@ export const getChallenges = async () => {
   }
 };
 
+export const getChallenge = async (id: string) => {
+  if (!id) return;
+  try {
+    const selectedChallenge = challengeData.find(
+      (challenge) => challenge.id === id
+    );
+
+    if (selectedChallenge) {
+      return selectedChallenge as Challenge;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    console.error("Error loading challenges:", error);
+  }
+};
+
 export const sortByDifficulty = async (challanges: Challenges) => {
   return challanges.sort((a, b) => {
     return difficultyOrder[a.difficulty] - difficultyOrder[b.difficulty];

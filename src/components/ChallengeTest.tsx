@@ -26,7 +26,7 @@ export default function ChallengeTest({
           </div>
         ) : testResults.length === 0 ? (
           <div className="text-center py-5 rounded">
-            <i className="bi bi-code-square fs-1 mb-3 text-warning"></i>
+            <i className="bi bi-code-square fs-1 mb-3 text-warning opacity-25"></i>
             <p className="lead text-muted">
               Presiona "Ejecutar Tests" para ver los resultados
             </p>

@@ -1,81 +1,41 @@
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import challengesData from "../challanges.json";
+import { useState } from "react";
+import useChallenge from "../hooks/useChallenger";
 import NotFoundLayout from "../layouts/NotFoundLayout";
 import EditorPanel from "../components/EditorPanel";
 import ExcercicePanel from "../components/ExercicePanel";
 import WinModal from "../components/WinModal";
 import LoadSpinner from "../components/LoadSpinner";
 
+/*interface TestResult {
+  message: string;
+  isSuccess: boolean;
+}*/
+
 export default function ChallengePage() {
-  const { challengeId } = useParams();
-  const [challenge, setChallenge] = useState<Challenge | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [testResults, setTestResults] = useState<TestResult[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const {
+    challenge,
+    error,
+    testResults,
+    win,
+    loading,
+    handleRunTests: runTest,
+    setWin,
+  } = useChallenge();
+  //const [error, setError] = useState<string | null>(null);
+  //const [testResults, setTestResults] = useState<TestResult[]>([]);
+  //const [win, setWin] = useState<boolean>(false);
   const [screen, setScreen] = useState<PageType>("META");
-  const [win, setWin] = useState<boolean>(false);
-
-  useEffect(() => {
-    const loadChallenge = async () => {
-      try {
-        if (!challengeId) return;
-        const selectedChallenge = challengesData.find(
-          (challenge) => challenge.id === challengeId
-        );
-
-        if (selectedChallenge) {
-          setChallenge(selectedChallenge as Challenge);
-        } else {
-          setChallenge(null); // o manejar el caso de no encontrado
-        }
-      } catch (error) {
-        console.error("Error loading challenges:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadChallenge();
-  }, []);
 
   const handleSetScreen = (screen: PageType) => {
     setScreen(screen);
   };
 
-  /*const handleRunTests = (code: string) => {
-    if (!challenge) return;
-
-    setError(null);
-    setTestResults([]);
-
-    try {
-      const originalConsoleLog = console.log;
-      const results: TestResult[] = [];
-
-      console.log = (...args) => {
-        const message = args.join(" ");
-        results.push({
-          message,
-          isSuccess: message.includes("✓"),
-        });
-        originalConsoleLog(...args);
-      };
-
-      // Combinamos el código del usuario con los tests del challenge
-      const fullCode = `${code}\n${challenge.defaultTest}`;
-      new Function(fullCode)();
-
-      console.log = originalConsoleLog;
-      setTestResults(results);
-      setScreen("TEST");
-      setWin(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
-    }
-  };*/
-
   const handleRunTests = (code: string) => {
+    runTest(code)
+    setScreen("TEST");
+  }
+
+  /*const handleRunTests = (code: string) => {
     if (!challenge) return;
 
     setError(null);
@@ -147,7 +107,7 @@ export default function ChallengePage() {
     } finally {
       setScreen("TEST");
     }
-  };
+  };*/
 
   if (loading) {
     return (
@@ -163,8 +123,8 @@ export default function ChallengePage() {
 
   return (
     <>
-      {/*win && <Celebration />*/}
       <WinModal show={win} onClose={() => setWin(false)} />
+
       <EditorPanel
         defaultCode={challenge.defaultCode}
         onRunTests={handleRunTests}
@@ -179,10 +139,4 @@ export default function ChallengePage() {
       />
     </>
   );
-}
-
-// Tipos necesarios (puedes moverlos a types.ts)
-interface TestResult {
-  message: string;
-  isSuccess: boolean;
 }
