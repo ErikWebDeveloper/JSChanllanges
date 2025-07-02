@@ -17,6 +17,7 @@ export default function ChallengePage() {
     setWin,
   } = useChallenge();
 
+  const [btnRunTest, setBtnRunTest] = useState(false);
   const [screen, setScreen] = useState<PageType>("META");
 
   const handleSetScreen = (screen: PageType) => {
@@ -24,7 +25,9 @@ export default function ChallengePage() {
   };
 
   const handleRunTests = (code: string) => {
+    setBtnRunTest(true);
     runTest(code);
+    setBtnRunTest(false);
     setScreen("TEST");
   };
 
@@ -47,6 +50,7 @@ export default function ChallengePage() {
       <EditorPanel
         defaultCode={challenge.defaultCode}
         onRunTests={handleRunTests}
+        btnState={btnRunTest}
       />
 
       <ExcercicePanel

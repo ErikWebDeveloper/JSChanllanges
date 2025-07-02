@@ -6,11 +6,13 @@ import { editor } from "monaco-editor";
 interface UserEditorProps {
   defaultCode: string;
   onRunTests: (code: string) => void;
+  btnState: boolean;
 }
 
 export default function EditorPanel({
   defaultCode,
   onRunTests,
+  btnState,
 }: UserEditorProps) {
   const editorRef = useRef<editor.IStandaloneCodeEditor | null>(null);
 
@@ -54,8 +56,13 @@ export default function EditorPanel({
           }}
         />
       </div>
-      <button onClick={handleRunTests} className="btn btn-warning w-100">
-        <i className="bi bi-play-fill me-2"></i>Ejecutar Tests
+      <button
+        onClick={handleRunTests}
+        className="btn btn-warning w-100"
+        disabled={btnState}
+      >
+        <i className="bi bi-play-fill me-2"></i>
+        {btnState ? "Ejecutando Tests ...." : "Ejecutar Tests"}
       </button>
     </div>
   );
