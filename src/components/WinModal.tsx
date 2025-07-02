@@ -34,28 +34,29 @@ export default function WinModal({ show, onClose }: Props) {
       >
         <div className="modal-dialog modal-dialog-centered">
           <div className="modal-content">
-            <div className="modal-header bg-success text-white">
-              <h5 className="modal-title">¡Enhorabuena! 🎉</h5>
+            {/*<div className="modal-header bg-success text-white">
+              <h5 className="modal-title">¡Enhorabuena! </h5>
               <button
                 type="button"
                 className="btn-close btn-close-white"
                 onClick={onClose}
               ></button>
-            </div>
-            <div className="modal-body text-center py-4 position-relative">
+            </div>*/}
+            <div className="modal-body text-center py-4 position-relative pb-3">
               <div className="confetti-container position-absolute top-0 start-0 w-100 h-100 overflow-hidden"></div>
-              <h4 className="position-relative">¡Has ganado!</h4>
-              <img
+              <h4 className="position-relative">🎉 ¡Reto completado! 🎉</h4>
+              {/*<img
                 src={geniusGIF[randomGIF]}
                 width={200}
                 className="img-thumbnail border-0 p-0 rounded-circle"
                 alt="Celebration"
-              />
+              />*/}
               <p className="mt-3 position-relative">
-                🎉 Felicidades por tu logro 🎉
+                ¡Eres un auténtico mago de JavaScript! Sigue practicando y
+                prueba otro reto.
               </p>
             </div>
-            <div className="modal-footer">
+            <div className="modal-footer border-0 d-flex align-items-center justify-content-center pt-0">
               <button className="btn btn-success" onClick={onClose}>
                 Continuar
               </button>

@@ -9,7 +9,7 @@ export default function useChallenge() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [testResults, setTestResults] = useState<TestResult[]>([]);
-  const [win, setWin] = useState<boolean>(false);
+  const [win, setWin] = useState<boolean>(true);
 
   const handleRunTests = (code: string) => {
     if (!challenge) return;
