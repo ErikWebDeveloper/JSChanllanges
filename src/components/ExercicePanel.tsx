@@ -21,6 +21,17 @@ export default function ExcercicePanel({
   screen,
   changeScreen,
 }: RightColumnProps) {
+  const renderPage = (component: PageType) => {
+    switch (component) {
+      case "META":
+        return <ChallengeMeta challenge={challenge} />;
+      case "TEST":
+        return <ChallengeTest error={error} testResults={testResults} />;
+      default:
+        break;
+    }
+  };
+
   return (
     <div
       style={{
@@ -52,11 +63,7 @@ export default function ExcercicePanel({
         className="tab-content p-3 border border-top-0 rounded-bottom"
         style={{ flex: 1, overflow: "auto" }}
       >
-        {screen === "META" ? (
-          <ChallengeMeta challenge={challenge} />
-        ) : (
-          <ChallengeTest error={error} testResults={testResults} />
-        )}
+        {renderPage(screen)}
       </div>
     </div>
   );
