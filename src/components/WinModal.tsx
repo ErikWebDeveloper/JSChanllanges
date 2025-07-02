@@ -1,21 +1,20 @@
-import Celebration from "./Confetti";
-import { geniusGIF } from "@/constants/gifs";
-import { useState, useEffect } from "react";
+import Celebration from "@/components/Confetti";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   show: boolean;
   onClose: () => void;
+  nextChallenge: string | null;
 }
 
-export default function WinModal({ show, onClose }: Props) {
+export default function WinModal({ show, onClose, nextChallenge }: Props) {
+  const navigate = useNavigate();
   if (!show) return null;
-  const [randomGIF, setRandomGIF] = useState<number>(0);
 
-  useEffect(() => {
-    // Seleccionar un GIF aleatorio cuando el componente se monta
-    const randomIndex = Math.floor(Math.random() * geniusGIF.length);
-    setRandomGIF(randomIndex);
-  }, []); // El array vacío asegura que solo se ejecute una vez
+  const handleNavigate = () => {
+    onClose();
+    navigate(`/challenges/${nextChallenge}`);
+  };
 
   return (
     <>
@@ -52,14 +51,19 @@ export default function WinModal({ show, onClose }: Props) {
                 alt="Celebration"
               />*/}
               <p className="mt-3 position-relative">
-                ¡Eres un auténtico mago de JavaScript! Sigue practicando y
-                prueba otro reto.
+                ¡Eres un auténtico mago de JavaScript!
+                {nextChallenge && "Sigue practicando y prueba otro reto."}
               </p>
             </div>
             <div className="modal-footer border-0 d-flex align-items-center justify-content-center pt-0">
-              <button className="btn btn-success" onClick={onClose}>
-                Continuar
+              <button className="btn btn-secondary" onClick={onClose}>
+                Cerrar
               </button>
+              {nextChallenge && (
+                <button className="btn btn-success" onClick={handleNavigate}>
+                  Continuar
+                </button>
+              )}
             </div>
           </div>
         </div>

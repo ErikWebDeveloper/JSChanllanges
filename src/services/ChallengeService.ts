@@ -16,7 +16,6 @@ type DifficultyLevel = "Fácil" | "Intermedio" | "Difícil";
 type DifficultyFilter = "Todos" | DifficultyLevel;
 type CategoryFilter = "Todos" | "Arrays" | "Funciones" | "Async";
 
-// Obtener y ordenar challenges (Servicio)
 export const getChallenges = async () => {
   try {
     const challenges = challengeData as Challenge[];
@@ -40,6 +39,23 @@ export const getChallenge = async (id: string) => {
     }
   } catch (error) {
     console.error("Error loading challenges:", error);
+  }
+};
+
+export const getNextChallenge = async (id: string | undefined) => {
+  if (!id) return null;
+
+  const nextChallengeId = `js-${Number(id.split("-")[1]) + 1}`;
+
+  try {
+    const next = challengeData.find(
+      (challenge) => challenge.id === nextChallengeId
+    );
+
+    if (next) return nextChallengeId;
+    else return null;
+  } catch (error) {
+    return null;
   }
 };
 

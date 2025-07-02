@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useChallenge from "@/hooks/useChallenger";
 import NotFoundLayout from "@/layouts/NotFoundLayout";
 import EditorPanel from "@/components/EditorPanel";
@@ -15,6 +15,7 @@ export default function ChallengePage() {
     loading,
     handleRunTests: runTest,
     setWin,
+    nextChallenge,
   } = useChallenge();
 
   const [btnRunTest, setBtnRunTest] = useState(false);
@@ -31,6 +32,10 @@ export default function ChallengePage() {
     setScreen("TEST");
   };
 
+  useEffect(() => {
+    setScreen("META");
+  }, [challenge]);
+
   if (loading) {
     return (
       <main className="w-100 d-flex align-items-center justify-content-center flex-column">
@@ -45,9 +50,14 @@ export default function ChallengePage() {
 
   return (
     <>
-      <WinModal show={win} onClose={() => setWin(false)} />
+      <WinModal
+        show={win}
+        onClose={() => setWin(false)}
+        nextChallenge={nextChallenge}
+      />
 
       <EditorPanel
+        key={challenge.id}
         defaultCode={challenge.defaultCode}
         onRunTests={handleRunTests}
         btnState={btnRunTest}
