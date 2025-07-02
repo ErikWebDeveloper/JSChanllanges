@@ -4,7 +4,7 @@ import JSLogo from "../assets/img/javascript-logo.svg";
 export default function Navbar() {
   return (
     <nav className="navbar shadow-sm">
-      <div className="container-fluid">
+      <div className="container-fluid px-3">
         <Link
           className="navbar-brand d-flex align-items-center gap-2"
           to={"/"}
