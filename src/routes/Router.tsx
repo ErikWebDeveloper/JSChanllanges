@@ -1,7 +1,7 @@
-import AppLayout from "../layouts/AppLayout.tsx";
+import AppLayout from "@/layouts/AppLayout.tsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from "../pages/HomePage.tsx";
-import ChallengePage from "../pages/ChallangePage.tsx";
+import HomePage from "@/pages/HomePage.tsx";
+import ChallengePage from "@/pages/ChallangePage.tsx";
 
 export default function AppRoutes() {
   return (

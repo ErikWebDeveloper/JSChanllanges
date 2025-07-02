@@ -1,7 +1,5 @@
-// src/components/RightColumn.tsx
-import { useState } from "react";
-import ChallengeMeta from "./ChallengeMeta";
-import ChallengeTest from "./ChallengeTest";
+import ChallengeMeta from "@/components/ChallengeMeta";
+import ChallengeTest from "@/components/ChallengeTest";
 
 const PAGES = {
   META: "Descripción",

@@ -1,4 +1,4 @@
-import JSLogo from "../assets/img/javascript-logo.svg";
+import JSLogo from "@/assets/img/javascript-logo.svg";
 
 export default function HomeHero() {
   return (

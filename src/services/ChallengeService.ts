@@ -1,4 +1,4 @@
-import challengeData from "../challanges.json";
+import challengeData from "@/challanges.json";
 
 const difficultyOrder: Record<DifficultyLevel, number> = {
   Fácil: 1,

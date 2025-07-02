@@ -1,5 +1,5 @@
 import Celebration from "./Confetti";
-import { geniusGIF } from "../constants/gifs";
+import { geniusGIF } from "@/constants/gifs";
 import { useState, useEffect } from "react";
 
 interface Props {

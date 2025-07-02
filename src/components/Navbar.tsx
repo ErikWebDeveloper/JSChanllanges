@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import JSLogo from "../assets/img/javascript-logo.svg";
+import JSLogo from "@/assets/img/javascript-logo.svg";
 
 export default function Navbar() {
   return (

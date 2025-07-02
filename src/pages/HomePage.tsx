@@ -1,6 +1,6 @@
-import FullPageLayout from "../layouts/FullPageLayout";
-import HomeHero from "../components/HomeHero";
-import ChallengesGrid from "../components/ChallengesGrid";
+import FullPageLayout from "@/layouts/FullPageLayout";
+import HomeHero from "@/components/HomeHero";
+import ChallengesGrid from "@/components/ChallengesGrid";
 
 export default function HomePage() {
   return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getChallenge } from "../services/ChallengeService";
-import { runTests } from "../services/TestService";
+import { getChallenge } from "@/services/ChallengeService";
+import { runTests } from "@/services/TestService";
 
 export default function useChallenge() {
   const { challengeId } = useParams();

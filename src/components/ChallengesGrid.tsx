@@ -1,4 +1,4 @@
-import useChallengers from "../hooks/useChallengers";
+import useChallengers from "@/hooks/useChallengers";
 import { Link } from "react-router-dom";
 import LoadSpinner from "./LoadSpinner";
 import ToastMessage from "./ToastMessage";

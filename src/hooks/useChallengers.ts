@@ -3,7 +3,7 @@ import {
   getChallenges,
   sortByDifficulty,
   filterChallenges,
-} from "../services/ChallengeService";
+} from "@/services/ChallengeService";
 
 export default function useChallengers() {
   const [challenges, setChallenges] = useState<Challenge[]>([]);

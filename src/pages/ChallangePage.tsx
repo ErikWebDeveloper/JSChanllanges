@@ -1,10 +1,10 @@
 import { useState } from "react";
-import useChallenge from "../hooks/useChallenger";
-import NotFoundLayout from "../layouts/NotFoundLayout";
-import EditorPanel from "../components/EditorPanel";
-import ExcercicePanel from "../components/ExercicePanel";
-import WinModal from "../components/WinModal";
-import LoadSpinner from "../components/LoadSpinner";
+import useChallenge from "@/hooks/useChallenger";
+import NotFoundLayout from "@/layouts/NotFoundLayout";
+import EditorPanel from "@/components/EditorPanel";
+import ExcercicePanel from "@/components/ExercicePanel";
+import WinModal from "@/components/WinModal";
+import LoadSpinner from "@/components/LoadSpinner";
 
 export default function ChallengePage() {
   const {
